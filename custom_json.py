@@ -1,8 +1,8 @@
 import csv
 import json
 
-csvfile = open('csvdir/redfin.csv', 'r')
-jsonfile = open('jsondir/redfin.json', 'w')
+csvfile = open('csvdir/indus.csv', 'r')
+jsonfile = open('jsondir/indus.json', 'w')
 
 fieldnames = ("","url","price","location","amenities")
 reader = csv.DictReader( csvfile, fieldnames)
