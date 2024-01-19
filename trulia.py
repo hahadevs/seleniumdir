@@ -19,12 +19,11 @@ def extract_data_from_page(url:str):
 
 def get_list_sub_pages(driver:webdriver)->list:
     sub_urls = []
-    div = driver.find_elements(By.CLASS_NAME,"Text__TextContainerBase-sc-53dad1a1-1")
-    print(len(div))
-    # for anchor_tag in div.find_all(By.TAG_NAME,"a"):
-    #     sub_urls.append(anchor_tag.get_attribute("href"))
-    # print(sub_urls[1:])
-    # return sub_urls[1:]
+    tags = driver.find_elements(By.TAG_NAME,"a")
+    for anchor_tag in tags:
+        sub_urls.append(anchor_tag.get_attribute("href"))
+    print(sub_urls[1:])
+    return sub_urls[1:]
 
     return []
 
@@ -38,7 +37,7 @@ if __name__ == "__main__":
 
     driver = webdriver.Chrome(options=driver_options)
 
-    url = 'https://www.trulia.com/'
+    url = 'https://www.trulia.com/sitemaps/popular-cities/'
     driver.get(url=url)
 
     data_list = []
@@ -46,6 +45,7 @@ if __name__ == "__main__":
     for page_number,page_url in enumerate(get_list_sub_pages(driver)):
         extract_data_from_page(page_url)
         break
+    sleep(50)
     
     driver.close()
     
